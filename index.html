@@ -92,8 +92,15 @@
             // Debugging: Log the IP address
             console.log("User IP Address:", userIP);
 
+            // Validate the API URL
+            const apiUrl = `https://proxycheck.io/v2/${userIP}?key=6a4992-mc2s88-80h85z-12p2m3&vpn=1&asn=1`;
+            console.log("Fetching from API URL:", apiUrl);
+
             // Fetch information from proxycheck.io
-            const ipInfoResponse = await fetch(`https://proxycheck.io/v2/${userIP}?key=6a4992-mc2s88-80h85z-12p2m3&vpn=1&asn=1`);
+            const ipInfoResponse = await fetch(apiUrl);
+            if (!ipInfoResponse.ok) {
+                throw new Error(`Failed to fetch from proxycheck.io: ${ipInfoResponse.statusText}`);
+            }
             const ipInfo = await ipInfoResponse.json();
 
             // Debugging: Log the response from proxycheck.io
