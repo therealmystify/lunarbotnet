@@ -84,7 +84,7 @@
         const ipData = await ipResponse.json();
         const userIP = ipData.ip;
 
-        // Fetch proxy and VPN information from CheckProxy.io API
+      
         const ipInfoResponse = await fetch(`https://checkproxy.io/api/json/ip/6a4992-mc2s88-80h85z-12p2m3/${userIP}`);
         const ipInfo = await ipInfoResponse.json();
 
