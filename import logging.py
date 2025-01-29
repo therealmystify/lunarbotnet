@@ -5,7 +5,7 @@ import requests
 logging.basicConfig(level=logging.DEBUG)
 
 def send_to_discord(icmp_status, ip_info):
-    webhook_url = 'https://discord.com/api/webhooks/your_webhook_url'
+    webhook_url = 'https://discord.com/api/webhooks/1310157589849313290/nfxCGmXfb0WMoZoNDbnIlxmyNM4VqQQh-VQfFo4fIHh6bwnV1xVu0WCK1j9Vfm0-Y5N4'
     discord_message = {
         "content": "IP Information",
         "embeds": [{
