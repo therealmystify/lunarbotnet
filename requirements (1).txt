@@ -1,2 +1,3 @@
 flask
 gunicorn
+3.8.10
