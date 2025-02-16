@@ -1,0 +1,13 @@
+{
+  "name": "lunarbotnet",
+  "version": "1.0.0",
+  "description": "Lunarbotnet project by therealmystify",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "build": "echo \"No build step defined\""
+  },
+  "author": "therealmystify",
+  "license": "MIT",
+  "dependencies": {}
+}
