@@ -4,7 +4,7 @@
   "description": "Lunarbotnet project by therealmystify",
   "main": "app.py",
   "scripts": {
-    "start": "python app.py",
+    "start": "python3 app.py",
     "build": "echo \"No build step defined\""
   },
   "author": "therealmystify",
